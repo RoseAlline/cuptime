@@ -6,7 +6,7 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(null);
 
   useEffect(() => {
-    const storeCart = JSON.parse(localStorage.getItem("cart") || []);
+    const storeCart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCart(storeCart);
   }, []);
 

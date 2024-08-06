@@ -1,4 +1,4 @@
-import Modal, { setAppElement } from "react-modal";
+import Modal from "react-modal";
 import { API_URL } from "../const";
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
