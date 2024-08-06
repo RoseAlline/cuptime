@@ -6,7 +6,7 @@ import { useOrder } from "../context/OrderContext";
 import { API_URL } from "../const";
 import Modal from "react-modal";
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 export const Cart = () => {
   const [orderStatus, setOrderStatus] = useState(null);
@@ -14,7 +14,7 @@ export const Cart = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const { cart, clearCart } = useCart();
-  const [orderDetails, clearOrderDetails] = useOrder();
+  const { orderDetails, clearOrderDetails } = useOrder();
 
   const handleSubmit = async () => {
     const orderData = {
@@ -24,9 +24,9 @@ export const Cart = () => {
 
     try {
       const response = await fetch(`${API_URL}/api/orders`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-            "Content-Type" : "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(orderData),
       });
@@ -35,7 +35,7 @@ export const Cart = () => {
         throw new Eroor("Ошибка при отправке заказа");
       }
 
-      const result = await response.json()
+      const result = await response.json();
       setOrderStatus("success");
       setOrderId(result.order.id);
       clearCart();
@@ -48,10 +48,9 @@ export const Cart = () => {
     }
   };
 
-  const closeModal = () =>  {
+  const closeModal = () => {
     setModalIsOpen(false);
   };
-
 
   const totalPrice = cart
     ? cart.reduce((acc, item) => item.quantity * item.price + acc, 0)
@@ -61,9 +60,9 @@ export const Cart = () => {
     <section className="cart">
       <div className="container cart__container">
         <h2 className="cart__title">
-            Корзина (
-            {cart ? cart.reduce((acc, item) => item.quantity + acc, 0) : 0})
-            </h2>
+          Корзина (
+          {cart ? cart.reduce((acc, item) => item.quantity + acc, 0) : 0})
+        </h2>
 
         <ul className="cart__items">
           {cart ? (
@@ -83,18 +82,18 @@ export const Cart = () => {
       </div>
 
       <Modal
-      className="modal-cart"
-      overlayClassName="modal-cart__overlay"
-      onRequestClose={closeModal}
-      isOpen={modalIsOpen}>
+        className="modal-cart"
+        overlayClassName="modal-cart__overlay"
+        onRequestClose={closeModal}
+        isOpen={modalIsOpen}>
         <h2 className="modal-cart__title">
-            {orderStatus === "success" 
-              ? `Заказ успешно отправлен! Номер вашего заказа ${orderId}`
-              : "Произошла ошибка при отправке заказа"}
+          {orderStatus === "success"
+            ? `Заказ успешно отправлен! Номер вашего заказа ${orderId}`
+            : "Произошла ошибка при отправке заказа"}
         </h2>
         <button className="modal-cart__button" onClick={closeModal}>
-            Закрыть
-            </button>
+          Закрыть
+        </button>
       </Modal>
     </section>
   );

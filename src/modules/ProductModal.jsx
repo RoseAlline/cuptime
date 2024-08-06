@@ -43,7 +43,7 @@ export const ProductModal = ({ isOpen, onRequestClose, data }) => {
           <h2 className={s.title}>
             {data.title}({data.id})
           </h2>
-          <p className={s.price}>{data.price}&nsbp;₽</p>
+          <p className={s.price}>{data.price}&nbsp;₽</p>
         </div>
 
         <ul className="s.list">

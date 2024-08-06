@@ -20,6 +20,7 @@ export const Order = () => {
             name="name"
             placeholder="Имя"
             value={orderDetails.name}
+            onChange={handleChange}
           />
           <input
             className="order__input"
@@ -27,6 +28,7 @@ export const Order = () => {
             name="phone"
             placeholder="Телефон"
             value={orderDetails.phone}
+            onChange={handleChange}
           />
           <input
             className="order__input order__input_address"
@@ -34,6 +36,7 @@ export const Order = () => {
             name="address"
             placeholder="Адрес"
             value={orderDetails.address}
+            onChange={handleChange}
           />
 
           <fieldset className="order__payment">
