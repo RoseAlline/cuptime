@@ -1,29 +1,33 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useProducts } from "../context/ProductContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getActiveClass } from "../helpers";
+
 
 export const Header = () => {
-  const location = useLocation();
   const { cart } = useCart();
   const { categories } = useProducts();
   const [isMenuOpen, setIsOpenMenu] = useState(false);
-  
-  const closeMenu = () =>  {
+
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+  }, [isMenuOpen]);
+
+  const closeMenu = () => {
     setIsOpenMenu(false);
   };
 
   const openMenu = () => {
     setIsOpenMenu(true);
   };
+  // const getActiveClass = (category) => {
+  //   const currentCategory = new URLSearchParams(location.search).get(
+  //     "category"
+  //   );
 
-  const getActiveClass = (category) => {
-    const currentCategory = new URLSearchParams(location.search).get(
-      "category"
-    );
-
-    return currentCategory === category ? "active" : "";
-  };
+  //   return currentCategory === category ? "active" : "";
+  // };
 
   return (
     <header className="header">
@@ -43,7 +47,8 @@ export const Header = () => {
                 <Link
                   className={`header__menu-link ${getActiveClass(key)}`}
                   to={`/products?category=${key}`}
-                  onClick={closeMenu}>
+                  onClick={closeMenu}
+                  aria-label="Закрыть меню">
                   {value}
                 </Link>
               </li>
