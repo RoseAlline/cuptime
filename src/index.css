@@ -98,7 +98,7 @@ input[type="number"] {  /*firefox */
 }
 
 .header__menu-link:hover {
-  border-bottom: #64099b;
+  border-bottom-color: #64099b;
 }
 
 .header__menu-link.active {
