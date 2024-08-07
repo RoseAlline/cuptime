@@ -93,6 +93,14 @@ input[type="number"] {  /*firefox */
   gap: 50px;
 }
 
+.header__menu-link {
+  border-bottom: 3px solid transparent;
+}
+
+.header__menu-link:hover {
+  border-bottom: #64099b;
+}
+
 .header__menu-link.active {
   color: #64099b;
 }
